@@ -7,16 +7,11 @@ use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::group( ["middleware"=>"guest:admin", "prefix"=>"admin" , "as"=>"admin."] , function () {
-    Route::get('register', [RegisteredUserController::class, 'create'])
-        ->name('register');
-
-    Route::post('register', [RegisteredUserController::class, 'store']);
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
@@ -58,11 +53,15 @@ Route::group(["auth:admin" ,"prefix"=>"admin" , "as"=>"admin."] , function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 
-    /*
-     * --------------------------------------------------------------------
-     * Admin Routes
-     * --------------------------------------------------------------------
-    */
-    Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 });
 
+/*
+ * --------------------------------------------------------------------
+ * Admin Routes
+ * --------------------------------------------------------------------
+*/
+
+Route::group(['middleware' => ['auth:admin' ,'verified'], 'prefix'=>'admin' , 'as'=>'admin.'], function () {
+    Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
+
+}) ;

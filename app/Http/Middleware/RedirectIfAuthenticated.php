@@ -51,8 +51,9 @@ class RedirectIfAuthenticated
     protected function defaultRedirectUri(?string $guard): string
     {
         $routes= [
-            'web'=>'dashboard' ,
-            'admin'=>'admin.dashboard'
+            'web'=>'student.dashboard' ,
+            'admin'=>'admin.dashboard',
+            'instructor'=>'instructor.dashboard'
         ] ;
         if(array_key_exists($guard, $routes)) {
             $routeName = $routes[$guard] ;

@@ -1,21 +1,22 @@
 <?php
+
+use App\Http\Controllers\Instructor\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Instructor\Auth\PasswordController;
+use App\Http\Controllers\Instructor\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Instructor\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\Instructor\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Instructor\Auth\NewPasswordController;
+use App\Http\Controllers\Instructor\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Instructor\Auth\RegisteredUserController;
+use App\Http\Controllers\Instructor\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\InstructorAuth\AuthenticatedSessionController;
-use App\Http\Controllers\InstructorAuth\ConfirmablePasswordController;
-use App\Http\Controllers\InstructorAuth\EmailVerificationNotificationController;
-use App\Http\Controllers\InstructorAuth\EmailVerificationPromptController;
-use App\Http\Controllers\InstructorAuth\NewPasswordController;
-use App\Http\Controllers\InstructorAuth\PasswordController;
-use App\Http\Controllers\InstructorAuth\PasswordResetLinkController;
-use App\Http\Controllers\InstructorAuth\RegisteredUserController;
-use App\Http\Controllers\InstructorAuth\VerifyEmailController;
 
 
 Route::group( ["middleware"=>"guest:instructor", "prefix"=>"instructor" , "as"=>"instructor."] , function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 
-    Route::post('register', [RegisteredUserController::class, 'store']);
+    Route::post('register', [RegisteredUserController::class, 'store'])->name('register.store');
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
@@ -63,6 +64,6 @@ Route::group(["auth:instructor" ,"prefix"=>"instructor" , "as"=>"instructor."] ,
  */
 Route::group(['middleware' => ['auth:instructor' ,'verified'], 'prefix'=>'instructor' , 'as'=>'instructor.'], function () {
     Route::get('/dashboard',function (){
-       return view('instructor.dashboard');
+       return view('instructor.index');
     })->name('dashboard');
 }) ;
