@@ -150,7 +150,7 @@
                                     Sign Out
                                 </a>
                                 <!-- Authentication -->
-                                <form method="POST" id="logout" action="{{ route('logout') }}">
+                                <form method="POST" id="logout" action="{{ route('instructor.logout') }}">
                                     @csrf
                                 </form>
                             </li>

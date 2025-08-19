@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\InstructorStatus;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -13,7 +14,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'guest'=> RedirectIfAuthenticated::class
+            'guest'=> RedirectIfAuthenticated::class ,
+            'instructorStatus'=>InstructorStatus::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

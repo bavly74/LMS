@@ -62,7 +62,7 @@ Route::group(["auth:instructor" ,"prefix"=>"instructor" , "as"=>"instructor."] ,
 /*
  Instructor Routes
  */
-Route::group(['middleware' => ['auth:instructor' ,'verified'], 'prefix'=>'instructor' , 'as'=>'instructor.'], function () {
+Route::group(['middleware' => ['auth:instructor' ,'verified' , 'instructorStatus'], 'prefix'=>'instructor' , 'as'=>'instructor.'], function () {
     Route::get('/dashboard',function (){
        return view('instructor.index');
     })->name('dashboard');

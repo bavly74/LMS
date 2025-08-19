@@ -31,7 +31,7 @@
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                              aria-labelledby="pills-home-tab" tabindex="0">
-                            <form method="POST" action="{{ route('register') }}">
+                            <form method="POST" action="{{ route('instructor.register') }}" enctype="multipart/form-data" >
                                 @csrf
                                 <h2>Sign Up<span>!</span></h2>
                                 <p class="new_user">Already have an account? <a href="{{route('login')}}">Sign In</a></p>
@@ -76,7 +76,7 @@
 
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                              aria-labelledby="pills-profile-tab" tabindex="0">
-                            <form action="{{route('instructor.register.store')}}" method="POST">
+                            <form action="{{route('instructor.register.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <h2>Instructor Sign Up<span>!</span></h2>
                                 <p class="new_user">Already have an account? <a href="{{route('login')}}">Sign In</a></p>
@@ -94,6 +94,13 @@
                                             <label>Your email</label>
                                             <input type="email" name="email" placeholder="Your email">
                                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="wsus__login_form_input">
+                                            <label>Document (Education / Certificate)</label>
+                                            <input type="file" name="document">
+                                            <x-input-error :messages="$errors->get('document')" class="mt-2" />
                                         </div>
                                     </div>
                                     <div class="col-xl-12">
