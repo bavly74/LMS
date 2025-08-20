@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Auth\PasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\InstructorController;
 use Illuminate\Support\Facades\Route;
 
 Route::group( ["middleware"=>"guest:admin", "prefix"=>"admin" , "as"=>"admin."] , function () {
@@ -64,4 +65,11 @@ Route::group(["auth:admin" ,"prefix"=>"admin" , "as"=>"admin."] , function () {
 Route::group(['middleware' => ['auth:admin' ,'verified'], 'prefix'=>'admin' , 'as'=>'admin.'], function () {
     Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 
+    //-------------------instructor crud------------------------
+    Route::group(['prefix'=>'instructor' , 'as'=>'instructor.' ], function () {
+        Route::get('/pending',[InstructorController::class,'index'])->name('pending') ;
+        Route::get('/approve/{instructor}',[InstructorController::class,'approve'])->name('approve') ;
+        Route::get('/reject/{instructor}',[InstructorController::class,'reject'])->name('reject') ;
+    });
+    //-------------------end instructor crud------------------------
 }) ;

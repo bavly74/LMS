@@ -31,7 +31,7 @@
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                              aria-labelledby="pills-home-tab" tabindex="0">
-                            <form method="POST" action="{{ route('instructor.register') }}" enctype="multipart/form-data" >
+                            <form method="POST" action="{{ route('register.store') }}" enctype="multipart/form-data" >
                                 @csrf
                                 <h2>Sign Up<span>!</span></h2>
                                 <p class="new_user">Already have an account? <a href="{{route('login')}}">Sign In</a></p>

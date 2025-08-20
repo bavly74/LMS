@@ -1,0 +1,2 @@
+{{$instructor->name}}
+{{$status}}

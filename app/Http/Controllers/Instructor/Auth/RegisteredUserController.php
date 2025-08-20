@@ -40,6 +40,7 @@ class RegisteredUserController extends Controller
 
         $file = $request->file('document');
         $path  = upload_file($file,'document');
+
         $user = Instructor::create([
             'name' => $request->name,
             'email' => $request->email,
