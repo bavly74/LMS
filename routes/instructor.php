@@ -9,6 +9,7 @@ use App\Http\Controllers\Instructor\Auth\NewPasswordController;
 use App\Http\Controllers\Instructor\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Instructor\Auth\RegisteredUserController;
 use App\Http\Controllers\Instructor\Auth\VerifyEmailController;
+use App\Http\Controllers\Instructor\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -66,4 +67,9 @@ Route::group(['middleware' => ['auth:instructor' ,'verified' , 'instructorStatus
     Route::get('/dashboard',function (){
        return view('instructor.index');
     })->name('dashboard');
+
+    Route::group(['prefix'=>'profile' , 'as'=>'profile.'], function () {
+        Route::get('/',[ProfileController::class,'index'])->name('index');
+        Route::patch('/update/{instructor}',[ProfileController::class,'update'])->name('update');
+    });
 }) ;

@@ -15657,3 +15657,10 @@ footer {
     -ms-border-radius: 0px !important;
     -o-border-radius: 0px !important;
 }
+
+.flash-message {
+    position: fixed;
+    top: 80px; /* عدلها حسب ارتفاع الـ header عندك */
+    right: 20px;
+    z-index: 9999; /* عشان تبقى فوق أي عنصر */
+}

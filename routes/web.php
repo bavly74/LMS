@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\FrontEnd\HomeController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Student\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +28,10 @@ Route::group(['middleware' => ['auth:web', 'verified'] , 'prefix'=>'student' , '
        return view('student.index');
     })->middleware(['auth:web', 'verified'])->name('dashboard');
 
+    Route::group(['prefix'=>'profile' , 'as'=>'profile.'] , function () {
+        Route::get('/', [ProfileController::class, 'index'])->name('index');
+        Route::patch('/update/{user}', [ProfileController::class, 'update'])->name('update');
+    });
 });
 
 require __DIR__.'/auth.php';
