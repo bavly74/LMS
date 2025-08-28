@@ -8,6 +8,10 @@ use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
+use App\Http\Controllers\Admin\Course\CourseCategoryController;
+use App\Http\Controllers\Admin\Course\CourseSubCategoryController;
+use App\Http\Controllers\Admin\Course\LanguageController;
+use App\Http\Controllers\Admin\Course\LevelController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\InstructorController;
 use Illuminate\Support\Facades\Route;
@@ -72,4 +76,51 @@ Route::group(['middleware' => ['auth:admin' ,'verified'], 'prefix'=>'admin' , 'a
         Route::get('/reject/{instructor}',[InstructorController::class,'reject'])->name('reject') ;
     });
     //-------------------end instructor crud------------------------
+
+
+    //-------------------course crud------------------------
+    Route::group(['prefix'=>'course' , 'as'=>'course.' ], function () {
+        //-------------------course language crud------------------------
+        Route::group(['prefix'=>'language' , 'as'=>'language.' ], function () {
+            Route::get('/',[LanguageController::class,'index'])->name('index') ;
+            Route::get('/create',[LanguageController::class,'create'])->name('create') ;
+            Route::post('/store',[LanguageController::class,'store'])->name('store') ;
+            Route::get('/edit/{language}',[LanguageController::class,'edit'])->name('edit') ;
+            Route::patch('/update/{language}',[LanguageController::class,'update'])->name('update') ;
+            Route::delete('/delete/{language}',[LanguageController::class,'delete'])->name('delete') ;
+        });
+        //-------------------end course language crud------------------------
+
+        //-------------------course level crud------------------------
+        Route::group(['prefix'=>'level' , 'as'=>'level.' ], function () {
+            Route::get('/',[LevelController::class,'index'])->name('index') ;
+            Route::get('/create',[LevelController::class,'create'])->name('create') ;
+            Route::post('/store',[LevelController::class,'store'])->name('store') ;
+            Route::get('/edit/{level}',[LevelController::class,'edit'])->name('edit') ;
+            Route::patch('/update/{level}',[LevelController::class,'update'])->name('update') ;
+            Route::delete('/delete/{level}',[LevelController::class,'delete'])->name('delete') ;
+        });
+        //-------------------end course level crud------------------------
+
+        //-------------------course category crud------------------------
+        Route::resource('category',CourseCategoryController::class);
+        //-------------------end course category crud------------------------
+
+
+        //------------------- course sub category crud------------------------
+        Route::group(['prefix'=>'category' , 'as'=>'category.' ], function () {
+            Route::group(['prefix'=>'sub-category' , 'as'=>'subcategory.' ], function () {
+                Route::get('{category}/',[CourseSubCategoryController::class,'index'])->name('index') ;
+                Route::get('{category}/create/',[CourseSubCategoryController::class,'create'])->name('create') ;
+                Route::post('{category}/',[CourseSubCategoryController::class,'store'])->name('store') ;
+                Route::get('edit/{subCategory}/',[CourseSubCategoryController::class,'edit'])->name('edit') ;
+                Route::patch('update/{subCategory}/',[CourseSubCategoryController::class,'update'])->name('update') ;
+                Route::delete('destroy/{subCategory}',[CourseSubCategoryController::class,'destroy'])->name('destroy') ;
+            });
+        });
+        //-------------------end course sub category crud------------------------
+
+
+    });
+    //-------------------end course crud------------------------
 }) ;

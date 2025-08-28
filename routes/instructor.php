@@ -9,6 +9,7 @@ use App\Http\Controllers\Instructor\Auth\NewPasswordController;
 use App\Http\Controllers\Instructor\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Instructor\Auth\RegisteredUserController;
 use App\Http\Controllers\Instructor\Auth\VerifyEmailController;
+use App\Http\Controllers\Instructor\Course\CourseController;
 use App\Http\Controllers\Instructor\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -71,5 +72,12 @@ Route::group(['middleware' => ['auth:instructor' ,'verified' , 'instructorStatus
     Route::group(['prefix'=>'profile' , 'as'=>'profile.'], function () {
         Route::get('/',[ProfileController::class,'index'])->name('index');
         Route::patch('/update/{instructor}',[ProfileController::class,'update'])->name('update');
+    });
+
+    Route::group(['prefix'=>'course' , 'as'=>'course.'], function () {
+        Route::get('/',[CourseController::class,'index'])->name('index');
+        Route::get('/create',[CourseController::class,'create'])->name('create');
+        Route::post('/store',[CourseController::class,'store'])->name('store');
+        Route::get('{course_id}/edit',[CourseController::class,'edit'])->name('edit');
     });
 }) ;

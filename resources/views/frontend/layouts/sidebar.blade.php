@@ -61,7 +61,7 @@
             </div>
             <ul class="wsus__dashboard_sidebar_menu">
                 <li>
-                    <a href="dashboard.html" class="active">
+                    <a href="{{route('instructor.dashboard')}}" class="active">
                         <div class="img">
                             <img src="{{asset('frontend/assets/images/dash_icon_8.png')}}" alt="icon" class="img-fluid w-100">
                         </div>
@@ -74,6 +74,14 @@
                             <img src="{{asset('frontend/assets/images/dash_icon_1.png')}}" alt="icon" class="img-fluid w-100">
                         </div>
                         Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('instructor.course.index')}}">
+                        <div class="img">
+                            <img src="{{asset('frontend/assets/images/dash_icon_1.png')}}" alt="icon" class="img-fluid w-100">
+                        </div>
+                        Courses
                     </a>
                 </li>
 

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{asset('frontend/assets/css/venobox.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/scroll_button.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/nice-select.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/pointer.css')}}">
+{{--    <link rel="stylesheet" href="{{asset('frontend/assets/css/pointer.css')}}">--}}
     <link rel="stylesheet" href="{{asset('frontend/assets/css/jquery.calendar.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/range_slider.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/startRating.css')}}">
@@ -26,7 +26,10 @@
     <link rel=" stylesheet" href="{{asset('frontend/assets/css/spacing.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/responsive.css')}}">
+    <meta name="base_url" content="{{url('/')}}">
+    <meta name="csrf-token" content="{{csrf_token()}}">
     @vite(['resources/css/frontend.css'])
+    @stack('scripts')
 </head>
 
 <body class="home_3">
@@ -35,7 +38,7 @@
 <!--============ PRELOADER START ===========-->
 <div id="preloader">
     <div class="preloader_icon">
-        <img src="images/preloader.png" alt="Preloader" class="img-fluid">
+        <img src="{{asset('frontend/assets/images/preloader.png')}}" alt="Preloader" class="img-fluid">
     </div>
 </div>
 <!--============ PRELOADER START ===========-->
@@ -96,7 +99,7 @@
 <!--Scroll Button js-->
 <script src="{{asset('frontend/assets/js/scroll_button.js')}}"></script>
 <!--pointer js-->
-<script src="{{asset('frontend/assets/js/pointer.js')}}"></script>
+{{--<script src="{{asset('frontend/assets/js/pointer.js')}}"></script>--}}
 <!--range slider js-->
 <script src="{{asset('frontend/assets/js/range_slider.js')}}"></script>
 <!--barfiller js-->
