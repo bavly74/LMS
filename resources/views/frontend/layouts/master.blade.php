@@ -27,9 +27,10 @@
     <link rel="stylesheet" href="{{asset('frontend/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/responsive.css')}}">
     <meta name="base_url" content="{{url('/')}}">
+    <link href="https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.css" rel="stylesheet">
     <meta name="csrf-token" content="{{csrf_token()}}">
     @vite(['resources/css/frontend.css'])
-    @stack('scripts')
+
 </head>
 
 <body class="home_3">
@@ -118,9 +119,12 @@
 <!--wow js-->
 <script src="{{asset('frontend/assets/js/wow.min.js')}}"></script>
 
+<script src="{{asset('/vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.js"></script>
 <!--main/custom js-->
 <script src="{{asset('frontend/assets/js/main.js')}}"></script>
-
+@stack('scripts')
 </body>
 
 </html>

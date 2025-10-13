@@ -79,5 +79,12 @@ Route::group(['middleware' => ['auth:instructor' ,'verified' , 'instructorStatus
         Route::get('/create',[CourseController::class,'create'])->name('create');
         Route::post('/store',[CourseController::class,'store'])->name('store');
         Route::get('{course_id}/edit',[CourseController::class,'edit'])->name('edit');
+        Route::patch('/update',[CourseController::class,'update'])->name('update');
     });
+
+
 }) ;
+
+Route::group(['prefix' => '/instructor/laravel-filemanager'], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
