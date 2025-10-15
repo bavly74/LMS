@@ -30,7 +30,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-
+        dd($request);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.Instructor::class],
@@ -49,9 +49,9 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
-
+        
         Auth::login($user);
 
-        return redirect(route('instructor.dashboard', absolute: false));
+        return redirect(route('instructor.dashboard'));
     }
 }

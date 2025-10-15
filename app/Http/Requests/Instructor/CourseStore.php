@@ -26,10 +26,11 @@ class CourseStore extends FormRequest
             'seo_description' => 'nullable|string|max:255',
             'thumbnail' => 'nullable|file|max:2048',
             'demo_video_storage' => 'nullable|string|max:255',
-            'demo_video_source' => 'nullable|file|max:2048',
+            'demo_video_source' => 'nullable',
             'price'=>'required|numeric|min:0',
             'discount'=>'nullable|numeric|min:0',
             'description'=>'nullable|string|max:255',
+            'url'=>'nullable|url',
         ];
     }
 }

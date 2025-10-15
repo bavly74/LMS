@@ -195,6 +195,15 @@
                             </div>
                         </div>
                     </div>
+                    <a href="javascript: ;" onclick=" event.preventDefault() ; $('.admin-logout').submit()">
+                        
+                        Logout
+                    </a>
+                    
+
+                                    <form method="POST" class="admin-logout" action="{{ route('admin.logout') }}">
+                                        @csrf
+                                    </form>
 
                 </li>
             </ul>

@@ -174,5 +174,6 @@
 <script src="{{asset('admin/assets/dist/js/tabler.min.js?1692870487')}}" defer></script>
 <script src="{{asset('admin/assets/dist/js/demo.min.js?1692870487')}}" defer></script>
 <script defer src="https://cdn.jsdelivr.net/npm/@flasher/flasher@1.2.4/dist/flasher.min.js"></script>
+<script src="{{asset('frontend/assets/js/jquery-3.7.1.min.js')}}"></script>
 </body>
 </html>

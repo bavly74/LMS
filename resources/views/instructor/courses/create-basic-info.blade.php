@@ -48,7 +48,7 @@
                 </div>
                 <div class="col-xl-6">
                     <label for="#">Path</label>
-                    <div class="input-group">
+                    {{-- <div class="input-group">
                         <input id="thumbnail" class="form-control source-text" type="text" name="filepath">
                         <span class="input-group-btn">
                              <a id="lfm" data-input="thumbnail"  data-preview="holder" class="btn btn-primary source-file d-none">
@@ -56,8 +56,22 @@
                              </a>
                            </span>
 
+                    </div> --}}
+                    <!-- رفع فيديو -->
+                    <div class="input-group video_source_input mt-2">
+                        <span class="input-group-btn">
+                            <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                <i class="fa fa-picture-o"></i> Choose
+                            </a>
+                        </span>
+                        <input id="thumbnail" class="form-control demo_video_source" type="text" name="demo_video_source">
                     </div>
-                    <div id="holder" class="source-file d-none" style="margin-top:15px;max-height:100px;"></div>
+
+                    <!-- إدخال رابط -->
+                    <div class="input-group video_text_input mt-2 d-none">
+                        <input type="text" class="form-control demo_video_source" name="url" placeholder="أدخل رابط الفيديو">
+                    </div>
+                
 
                 </div>
                 <div class="col-xl-6">
@@ -88,8 +102,12 @@
     </div>
 </div>
 @endsection
+
 @push('scripts')
+    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+
     <script>
-        $('#lfm').filemanager('image', {prefix: '/instructor/laravel-filemanager'});
+        $('#lfm').filemanager('file', {prefix: '/instructor/laravel-filemanager'});
     </script>
+
 @endpush

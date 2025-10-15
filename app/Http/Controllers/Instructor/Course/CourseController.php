@@ -17,21 +17,29 @@ use Illuminate\Support\Str;
 class CourseController extends Controller
 {
     public function index(){
-        return view('instructor.courses.index');
+        $data = Course::where('instructor_id',Auth::guard('instructor')->id())->paginate(10);
+        return view('instructor.courses.index',compact('data'));
     }
 
     public function create(){
         return view('instructor.courses.create-basic-info');
     }
     public function store(CourseStore $request){
-         $data = $request->validated();
+        $data = $request->validated();
+   
         try {
             if ($request->hasFile('thumbnail')) {
                 $data['thumbnail'] = upload_file($data['thumbnail'],'thumbnails');
             }
-            if ($request->hasFile('demo_video_source')) {
-                $data['demo_video_source'] = upload_file($data['demo_video_source'],'demo_video_source');
+
+            
+            if ($request->demo_video_storage === 'upload') {
+                $data['demo_video_source'] = $request->input('demo_video_source');
+            } else {
+                $data['demo_video_source'] = $request->input('url');
             }
+
+            unset($data['url']);
             $data['slug'] = Str::slug($data['title']);
             $data['instructor_id'] = Auth::guard('instructor')->id() ;
             $data['category_id'] = 6 ;
@@ -64,7 +72,7 @@ class CourseController extends Controller
                 return view('instructor.courses.create-more-info',compact('categories','levels','languages','course')) ;
                 break;
             case 3:
-                return "3" ;
+                return view('instructor.courses.create-course-content') ;
                 break;
         }
     }
@@ -79,9 +87,12 @@ class CourseController extends Controller
                     if ($request->hasFile('thumbnail')) {
                         $data['thumbnail'] = upload_file($data['thumbnail'],'thumbnails');
                     }
-                    if ($request->hasFile('demo_video_source')) {
-                        $data['demo_video_source'] = upload_file($data['demo_video_source'],'demo_video_source');
+                    if($request->demo_video_storage === 'upload'){
+                        $data['demo_video_source'] = $request->input('demo_video_source');
+                    }else{
+                        $data['demo_video_source'] = $request->input('url');
                     }
+                    unset($data['url']) ;
                     $data['slug'] = Str::slug($data['title']);
 
                     $data['instructor_id'] = Auth::guard('instructor')->id() ;

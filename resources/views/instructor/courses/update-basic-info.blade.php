@@ -39,38 +39,34 @@
                         <div class="add_course_basic_info_imput">
                             <label for="#">Demo Video Storage <b>(optional)</b></label>
                             <select class="select_js demo_video_storage" name="demo_video_storage">
-                                <option value=""> Please Select</option>
-                                <option value="upload">Upload</option>
-                                <option value="youtube">Youtube</option>
-                                <option value="vimeo">Vimeo</option>
-                                <option value="external_link">External Link</option>
+                                <option  value=""> Please Select</option>
+                                <option @selected($course->demo_video_storage=='upload') value="upload">Upload</option>
+                                <option @selected($course->demo_video_storage=='youtube') value="youtube">Youtube</option>
+                                <option @selected($course->demo_video_storage=='vimeo') value="vimeo">Vimeo</option>
+                                <option @selected($course->demo_video_storage=='external_link') value="external_link">External Link</option>
                             </select>
                             <x-input-error :messages="$errors->get('demo_video_storage')" class="mt-2"/>
                         </div>
                     </div>
                     <div class="col-xl-6">
                         <label for="#">Path</label>
-                        <div class="input-group">
-                            <input id="thumbnail" class="form-control source-text" type="text" name="filepath">
+
+                        <div class="input-group video_source_input mt-2 {{ $course->demo_video_storage!='upload'?'d-none':'' }}">
                             <span class="input-group-btn">
-                             <a id="lfm" data-input="thumbnail"  data-preview="holder" class="btn btn-primary source-file d-none">
-                               <i class="fa fa-picture-o"></i> Choose
-                             </a>
-                           </span>
-
+                                <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                    <i class="fa fa-picture-o"></i> Choose
+                                </a>
+                            </span>
+                            <input id="thumbnail" class="form-control demo_video_source" type="text" name="demo_video_source" value="{{$course->demo_video_source}}">
                         </div>
-                        <div id="holder" class="source-file d-none" style="margin-top:15px;max-height:100px;"></div>
 
+                        <!-- إدخال رابط -->
+                        <div class="input-group video_text_input mt-2 {{ $course->demo_video_storage=='upload'?'d-none':'' }}">
+                            <input type="text" class="form-control demo_video_source" name="url" placeholder="link" value="{{$course->demo_video_source}}">
+                        </div>
                     </div>
-                    <div class="input-group">
-                       <span class="input-group-btn">
-                         <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                           <i class="fa fa-picture-o"></i> Choose
-                         </a>
-                       </span>
-                        <input id="thumbnail" class="form-control" type="text" name="filepath">
-                    </div>
-                    <div id="holder" style="margin-top:15px;max-height:100px;"></div>
+
+                    
 
                     <div class="col-xl-6">
                         <div class="add_course_basic_info_imput">

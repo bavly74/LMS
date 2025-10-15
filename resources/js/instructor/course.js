@@ -11,16 +11,20 @@ $('.course-tab').on('click', function(e){
     $('.course-form').trigger('submit');
 });
 
-$('.demo_video_storage').on('change', function() {
-    let value = $(this).val();
-    if (value == 'upload') {
-        $('.source-file').removeClass('d-none');
-        $('.source-text').addClass('d-none');
-    } else {
-        $('.source-file').addClass('d-none');
-        $('.source-text').removeClass('d-none');
-    }
-});
+
+    $('.demo_video_storage').on('change', function() {
+        let value = $(this).val();
+        $('.demo_video_source').val('');
+
+        if (value === 'upload') {
+            $('.video_source_input').removeClass('d-none');
+            $('.video_text_input').addClass('d-none');
+        } else {
+            $('.video_source_input').addClass('d-none');
+            $('.video_text_input').removeClass('d-none');
+        }
+    });
+
 
 $('.basic_info_form').on('submit', function(e) {
     e.preventDefault();
@@ -138,5 +142,8 @@ $('.more_info_from').on('submit', function(e) {
 })
 
 
-
-
+// Course Content Js
+$('.dynamic-modal-btn').on('click', function(e) {
+    e.preventDefault();
+    $('#dynamic-modal').modal('show');
+});
