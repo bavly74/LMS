@@ -124,8 +124,7 @@
                     </div>
                 </div>
             </div>
-            <!-- بقية الـ accordion items (Data Structures / Pandas ...) -->
-            <!-- نفس الكود اللي كان بعده يبقى كما هو -->
+
         </div>
     </div>
 </div>

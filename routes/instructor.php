@@ -9,6 +9,7 @@ use App\Http\Controllers\Instructor\Auth\NewPasswordController;
 use App\Http\Controllers\Instructor\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Instructor\Auth\RegisteredUserController;
 use App\Http\Controllers\Instructor\Auth\VerifyEmailController;
+use App\Http\Controllers\Instructor\Course\CourseContentController;
 use App\Http\Controllers\Instructor\Course\CourseController;
 use App\Http\Controllers\Instructor\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -80,6 +81,7 @@ Route::group(['middleware' => ['auth:instructor' ,'verified' , 'instructorStatus
         Route::post('/store',[CourseController::class,'store'])->name('store');
         Route::get('{course_id}/edit',[CourseController::class,'edit'])->name('edit');
         Route::patch('/update',[CourseController::class,'update'])->name('update');
+        Route::get('course-chapter-modal',[CourseContentController::class,'courseChapterModal'])->name('course-chapter-modal');
     });
 
 

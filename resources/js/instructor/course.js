@@ -3,6 +3,9 @@ const basicInfoUrl = base_url + '/instructor/course/store';
 const moreInfoUrl = base_url + '/instructor/course/update';
 const csrfToken = $('meta[name="csrf-token"]').attr('content');
 const notyf = new Notyf() ;
+const loader = `<div class="spinner-border" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>`;
 $('.course-tab').on('click', function(e){
     e.preventDefault();
     // console.log('yaa');
@@ -146,4 +149,19 @@ $('.more_info_from').on('submit', function(e) {
 $('.dynamic-modal-btn').on('click', function(e) {
     e.preventDefault();
     $('#dynamic-modal').modal('show');
+    $.ajax({
+        method: 'GET',
+        url: base_url + '/instructor/course/course-chapter-modal',
+        data:{} ,
+        beforeSend: function() {
+            $('.dynamic-modal-content').html(loader);
+            
+        },
+        success: function(data) {
+            $('.dynamic-modal-content').html(data);
+        },
+        error: function(xhr, status, error) {
+            // $('#dynamic-modal .modal-body').html('<h3 class="text-center text-danger">An error occurred. Please try again.</h3>');
+        }
+    });
 });
