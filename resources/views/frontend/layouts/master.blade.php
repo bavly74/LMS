@@ -131,6 +131,17 @@
 <!--main/custom js-->
 <script src="{{asset('frontend/assets/js/main.js')}}"></script>
 @stack('scripts')
+<script>
+        const notyf = new Notyf() ;
+    @if($errors->any())
+
+        @foreach ($errors->all() as $error)
+            notyf.error('{{ $error }}');
+        @endforeach
+    @endif
+
+</script>
+
 </body>
 
 </html>

@@ -130,6 +130,9 @@ $('.more_info_from').on('submit', function(e) {
         error: function(xhr, status, error) {
             if (xhr.responseJSON) {
                 console.log(xhr.responseJSON)
+                if (xhr.responseJSON.error) {
+                    notyf.error(xhr.responseJSON.error);
+                }
                 if (xhr.responseJSON.errors) {
                     let errors = xhr.responseJSON.errors;
 
@@ -149,15 +152,39 @@ $('.more_info_from').on('submit', function(e) {
 $('.dynamic-modal-btn').on('click', function(e) {
     e.preventDefault();
     $('#dynamic-modal').modal('show');
+    var course_id = $(this).data('id');
     $.ajax({
         method: 'GET',
-        url: base_url + '/instructor/course/course-chapter-modal',
+        url: base_url + '/instructor/course/course-chapter-modal/'+ course_id,
         data:{} ,
         beforeSend: function() {
             $('.dynamic-modal-content').html(loader);
             
         },
         success: function(data) {
+            $('.dynamic-modal-content').html(data);
+        },
+        error: function(xhr, status, error) {
+            // $('#dynamic-modal .modal-body').html('<h3 class="text-center text-danger">An error occurred. Please try again.</h3>');
+        }
+    });
+});
+
+
+$('.add-lesson').on('click', function(e) {
+    e.preventDefault();
+    $('#dynamic-modal').modal('show');
+    var chapter_id = $(this).data('chapter-id');
+    $.ajax({
+        method: 'GET',
+        url: base_url + '/instructor/course/course-lesson-modal/'+ chapter_id,
+        data:{} ,
+        beforeSend: function() {
+            $('.dynamic-modal-content').html(loader);
+            
+        },
+        success: function(data) {
+            console.log(data);
             $('.dynamic-modal-content').html(data);
         },
         error: function(xhr, status, error) {

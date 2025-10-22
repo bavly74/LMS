@@ -9,10 +9,12 @@ use App\Models\Course;
 use App\Models\CourseCategory;
 use App\Models\CourseLanguage;
 use App\Models\CourseLevel;
+use App\Models\CourseChapter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+
 
 class CourseController extends Controller
 {
@@ -72,7 +74,8 @@ class CourseController extends Controller
                 return view('instructor.courses.create-more-info',compact('categories','levels','languages','course')) ;
                 break;
             case 3:
-                return view('instructor.courses.create-course-content') ;
+                $chapters = CourseChapter::where('course_id',$course_id)->get();
+                return view('instructor.courses.create-course-content',compact('course_id','chapters')) ;
                 break;
         }
     }
@@ -109,6 +112,9 @@ class CourseController extends Controller
                 break;
             case 2:
                 try {
+                    $request->validate([
+                        'duration' => 'required|string|max:255',
+                    ]);
                     $data['qna'] = $request->has('qna') ? 1 : 0;
                     $data['certificate'] = $request->has('certificate') ? 1 : 0;
                     $course->update($data);
@@ -120,6 +126,14 @@ class CourseController extends Controller
                 }catch (\Exception $exception){
                     return response()->json(['error' => $exception->getMessage()],500);
                 }
+                break;
+            case 3:
+                    
+                    return response([
+                        'status' => 'success',
+                        'message' => 'Course created successfully.',
+                        'redirect' => route('instructor.course.edit', ['course_id'=> $request->id ,'step'=> $request->next_step] )
+                    ],200);
                 break;
         }
 
