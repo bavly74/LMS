@@ -85,6 +85,10 @@ Route::group(['middleware' => ['auth:instructor' ,'verified' , 'instructorStatus
         Route::post('store-course-chapter/{id}',[CourseContentController::class,'storeCourseChapter'])->name('course-chapter.store');
 
         Route::get('course-lesson-modal/{id}',[CourseContentController::class,'courseLessonModal'])->name('course-lesson-modal');
+        Route::post('store-lesson/{id}',[CourseContentController::class,'storeLesson'])->name('store-course-lesson');
+
+        Route::get('course-lesson-edit-modal/{id}/{chapter_id}',[CourseContentController::class,'editCourseLessonModal'])->name('course-lesson-edit-modal');
+
     });
 
 

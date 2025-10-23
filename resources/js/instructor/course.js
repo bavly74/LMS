@@ -14,8 +14,8 @@ $('.course-tab').on('click', function(e){
     $('.course-form').trigger('submit');
 });
 
-
-    $('.demo_video_storage').on('change', function() {
+$(document).ready(function() {
+    $(document).on('change','.demo_video_storage', function() {
         let value = $(this).val();
         $('.demo_video_source').val('');
 
@@ -27,6 +27,8 @@ $('.course-tab').on('click', function(e){
             $('.video_text_input').removeClass('d-none');
         }
     });
+});
+
 
 
 $('.basic_info_form').on('submit', function(e) {
@@ -184,7 +186,30 @@ $('.add-lesson').on('click', function(e) {
             
         },
         success: function(data) {
-            console.log(data);
+           
+            $('.dynamic-modal-content').html(data);
+        },
+        error: function(xhr, status, error) {
+            // $('#dynamic-modal .modal-body').html('<h3 class="text-center text-danger">An error occurred. Please try again.</h3>');
+        }
+    });
+});
+
+$('.edit_lesson').on('click', function(e) {
+    e.preventDefault();
+    $('#dynamic-modal').modal('show');
+    var lesson_id = $(this).data('lesson-id');
+    var chapter_id = $(this).data('chapter-id');
+    $.ajax({
+        method: 'GET',
+        url: base_url + '/instructor/course/course-lesson-edit-modal/'+ lesson_id +'/'+ chapter_id,
+        data:{} ,
+        beforeSend: function() {
+            $('.dynamic-modal-content').html(loader);
+            
+        },
+        success: function(data) {
+           
             $('.dynamic-modal-content').html(data);
         },
         error: function(xhr, status, error) {

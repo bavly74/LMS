@@ -25,7 +25,7 @@ return new class extends Migration
             $table->boolean('is_preview')->default(false);
             $table->integer('order')->default(0);
             $table->boolean('is_downloadable')->default(false);
-            $table->enum('lesson_type',['lesson','live']);
+            $table->enum('lesson_type',['lesson','live'])->default('lesson');
             $table->timestamps();
         });
     }
