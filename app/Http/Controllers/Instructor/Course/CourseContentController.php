@@ -53,4 +53,19 @@ class CourseContentController extends Controller
         return view('instructor.courses.partials.course-lesson-modal',compact('lesson','chapter_id'))->render();
     }
 
+    public function updateCourseLesson(chapterLessonStore $request ,CourseChapterLesson $lesson ,CourseChapter $chapter_id){
+        $data = $request->validated();
+        $data['slug'] = \Str::slug($data['title']);
+        $data['is_preview'] = $data['is_preview'] ?? 0;
+        $data['is_downloadable'] = $data['is_downloadable']??0;
+        $data['file_path'] = $data['storage'] == 'upload' ? $data['file_path'] : $data['url'];
+        unset($data['url']);
+        $lesson->update($data);
+        return redirect()->back()->with(['success' => 'Lesson updated successfully']);
+    }
+    public  function deleteLesson(CourseChapterLesson $lesson){
+        $lesson->delete();
+        return redirect()->back()->with(['success' => 'Lesson deleted successfully']);
+    }
+
 }

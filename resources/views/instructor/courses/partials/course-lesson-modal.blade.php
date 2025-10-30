@@ -1,11 +1,12 @@
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel">{{ @$lesson ? 'Update Lesson' : 'Create Lesson' }}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="{{ route('instructor.course.store-course-lesson',['id'=>$chapter_id]) }}" method="POST">
+        
+        <form action="{{ @$lesson ? route('instructor.course.course-lesson-update',['lesson'=>$lesson->id,'chapter_id'=>$chapter_id]) : route('instructor.course.store-course-lesson',['id'=>$chapter_id]) }}" method="POST">
             <div class="modal-body">
-
+                {{ @$lesson ? method_field('PATCH') : '' }}
                 @csrf
                 <div class="row">
                     <div class="col-md-12">
@@ -64,7 +65,7 @@
                     <div class="col-md-6">
                         <div class="add_course_basic_info_imput">
                             <label for="#">File Type </label>
-                            <select class="form-control  select_js demo_video_storage" name="file_type" required>
+                            <select class="form-control  select_js" name="file_type" required>
                                 <option value=""> Please Select</option>
                                 @foreach (config('course.file_type') as $key => $source)
                                     <option @selected(@$lesson->file_type == $key) value="{{ $key }}">{{ $source }}</option>
@@ -115,7 +116,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">{{ @$lesson ? 'Update' : 'Save' }}</button>
             </div>
         </form>
     </div>

@@ -10,7 +10,8 @@ export default defineConfig({
                 'resources/js/admin/password.js' ,
                 'resources/css/frontend.css' ,
                 'resources/js/admin/admin.js',
-                'resources/js/instructor/course.js'
+                'resources/js/instructor/course.js',
+                'resources/js/frontend.js'
             ],
             refresh: true,
         }),

@@ -29,7 +29,7 @@
     <meta name="base_url" content="{{url('/')}}">
     <link href="https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.css" rel="stylesheet">
     <meta name="csrf-token" content="{{csrf_token()}}">
-    @vite(['resources/css/frontend.css'])
+    @vite(['resources/css/frontend.css', 'resources/js/frontend.js'])
 
 </head>
 
@@ -126,6 +126,9 @@
 <script src="{{asset('frontend/assets/js/wow.min.js')}}"></script>
 
 <script src="{{asset('/vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.js"></script>
 <!--main/custom js-->

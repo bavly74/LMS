@@ -68,7 +68,7 @@
                                     data-lesson-id="{{ $lesson->id }}"
                                     data-chapter-id="{{ $chapter->id }}"
                                      href="javascript:;"><i class="far fa-edit"></i></a>
-                                    <a class="del" href="#"><i class="fas fa-trash-alt"></i></a>
+                                    <a class="del" href="{{ route('instructor.course.course-lesson-delete',['lesson'=>$lesson->id]) }}"><i class="fas fa-trash-alt"></i></a>
                                     <a class="arrow" href="#"><i class="fas fa-arrows-alt"></i></a>
                                 </div>
                             </li>
