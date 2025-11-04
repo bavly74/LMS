@@ -51,25 +51,24 @@
                                 <li><a class="dropdown-item" href="#">Add Quiz</a></li>
                             </ul>
                         </div>
-                        <a class="edit" href="#"><i class="far fa-edit"></i></a>
-                        <a class="del" href="#"><i class="fas fa-trash-alt"></i></a>
+                        <a class="edit edit-chapter" href="javascript:;" data-chapter-id="{{ $chapter->id }}"><i class="far fa-edit"></i></a>
+                        <a class="del delete-chapter" data-chapter-id="{{ $chapter->id }}" href="javascript:;"><i class="fas fa-trash-alt"></i></a>
                     </div>
                 </h2>
-               
                 <div id="collapse-{{ $chapter->id }}" class="accordion-collapse collapse"
-                     data-bs-parent="#accordionExample">
+                    data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <ul class="item_list">
+                        <ul class="item_list sortable_list">
                             @foreach($chapter->lessons ?? [] as $lesson)
-                            <li>
+                            <li data-lesson-id="{{ $lesson->id }}">
                                 <span>{{ $lesson->title }}</span>
                                 <div class="add_course_content_action_btn">
                                     <a class="edit edit_lesson"
                                     data-lesson-id="{{ $lesson->id }}"
                                     data-chapter-id="{{ $chapter->id }}"
                                      href="javascript:;"><i class="far fa-edit"></i></a>
-                                    <a class="del" href="{{ route('instructor.course.course-lesson-delete',['lesson'=>$lesson->id]) }}"><i class="fas fa-trash-alt"></i></a>
-                                    <a class="arrow" href="#"><i class="fas fa-arrows-alt"></i></a>
+                                    <a class="del delete-lesson" href="javascript:;" data-lesson-id= {{ $lesson->id }} ><i class="fas fa-trash-alt"></i></a>
+                                    <a class="arrow handle" href="javascript:;"><i class="fas fa-arrows-alt"></i></a>
                                 </div>
                             </li>
                             @endforeach
@@ -84,3 +83,4 @@
     </div>
 </div>
 @endsection
+

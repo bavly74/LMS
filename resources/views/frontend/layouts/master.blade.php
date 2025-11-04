@@ -26,6 +26,7 @@
     <link rel=" stylesheet" href="{{asset('frontend/assets/css/spacing.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/assets/css/jquery-ui.min.css')}}">
     <meta name="base_url" content="{{url('/')}}">
     <link href="https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.css" rel="stylesheet">
     <meta name="csrf-token" content="{{csrf_token()}}">
@@ -124,8 +125,12 @@
 <script src="{{asset('frontend/assets/js/video_player_youtube.js')}}"></script>
 <!--wow js-->
 <script src="{{asset('frontend/assets/js/wow.min.js')}}"></script>
+<!--jquery js-->
+<script src="{{ asset('frontend/assets/js/jquery-ui.min.js') }}">
 
 <script src="{{asset('/vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

@@ -29,6 +29,24 @@ class CourseContentController extends Controller
 
         return redirect()->back()->with(['success' => 'Chapter created successfully']);
     }
+    public function editCourseChapterModal(CourseChapter $chapter): string{
+        return view('instructor.courses.partials.course-chapter-modal',compact('chapter'))->render();
+    }
+
+    public function deleteChapter(CourseChapter $chapter){
+        $chapter->delete();
+        return redirect()->back()->with(['success' => 'Chapter deleted successfully']);
+    }
+
+    public function updateChapter(Request $request ,CourseChapter $chapter){
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+        ]);
+        $chapter->update([
+            'title' => $data['title'],
+        ]);
+        return redirect()->back()->with(['success' => 'Chapter updated successfully']);
+    }
 
     public function courseLessonModal($chapter_id){
         

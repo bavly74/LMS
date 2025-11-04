@@ -3,13 +3,14 @@
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="{{ route('instructor.course.course-chapter.store', ['id'=>$course_id] ) }}" method="POST">
+      <form action=" {{ @$chapter ? route('instructor.course.course-chapter.update',$chapter->id) :  route('instructor.course.course-chapter.store', ['id'=>$course_id] ) }}" method="POST">
+        {{ @$chapter ? method_field('PATCH') : '' }}
         <div class="modal-body">
           
             @csrf
             <div class="mb-3">
               <label for="chapter-title" class="form-label">Chapter Title</label>
-              <input type="text" class="form-control" name="title" id="chapter-title" placeholder="Enter chapter title">
+              <input type="text" class="form-control" value="{{ @$chapter?->title  }}" name="title" id="chapter-title" placeholder="Enter chapter title">
             </div>
           
           

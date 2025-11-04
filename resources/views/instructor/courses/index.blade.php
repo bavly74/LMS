@@ -106,10 +106,10 @@
                                                     <p>{{ $course->price }}</p>
                                                 </td>
                                                 <td class="status">
-                                                    <p class="active">Active</p>
+                                                    <p class="active">Active </p>
                                                 </td>
                                                 <td class="action">
-                                                    <a class="edit" href="#"><i class="far fa-edit"></i></a>
+                                                    <a class="edit" href="{{ route('instructor.course.edit', ['course_id' => $course->id, 'step' => 1]) }}"><i class="far fa-edit"></i></a>
                                                     <a class="del" href="#"><i class="fas fa-trash-alt"></i></a>
                                                 </td>
                                             </tr>

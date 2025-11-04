@@ -217,3 +217,77 @@ $('.edit_lesson').on('click', function(e) {
         }
     });
 });
+
+$('.edit-chapter').on('click',function(e){
+    e.preventDefault();
+    $('#dynamic-modal').modal('show');
+    var chapter_id = $(this).data('chapter-id');
+    $.ajax({
+        method: 'GET',
+        url: base_url + '/instructor/course/course-chapter-edit-modal/'+ chapter_id,
+        data:{} ,
+        beforeSend: function() {
+            $('.dynamic-modal-content').html(loader);
+            
+        },
+        success: function(data) {
+            $('.dynamic-modal-content').html(data);
+        },
+        error: function(xhr, status, error) {
+            // $('#dynamic-modal .modal-body').html('<h3 class="text-center text-danger">An error occurred. Please try again.</h3>');
+        }
+    })
+});
+
+
+$('.delete-chapter').on('click', function(e){
+    e.preventDefault();
+    let chapter_id = $(this).data('chapter-id');
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: "btn btn-success",
+            cancelButton: "btn btn-danger"
+        },
+        buttonsStyling: false
+        });
+    swalWithBootstrapButtons.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes, delete it!",
+    cancelButtonText: "No, cancel!",
+    reverseButtons: true
+    }).then((result) => {
+    if (result.isConfirmed) {
+        $.ajax({
+            method:"GET",
+            url: base_url + '/instructor/course/course-chapter/delete/'+ chapter_id,
+            data:{},
+            success:function(data){
+                swalWithBootstrapButtons.fire({
+                title: "Deleted!",
+                text: data.success ,
+                icon: "success"
+                });
+                window.location.reload();
+            }
+        });
+    }})
+});
+
+if ($('.item_list').length) {
+    console.log($('.item_list').length);
+    $('.item_list').sortable({
+        "ui-sortable": "highlight",
+        containment: "parent",
+        cursor: "move",
+        handle: ".handle",
+        items: "> li",
+        update:function( event, ui ){
+            var sortedIDs = $(this).sortable("toArray",{attribute: 'data-lesson-id'});
+            console.log(sortedIDs);
+        }
+    }
+    )
+}
