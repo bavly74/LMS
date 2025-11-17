@@ -86,4 +86,18 @@ class CourseContentController extends Controller
         return redirect()->back()->with(['success' => 'Lesson deleted successfully']);
     }
 
+    public function sortLesson(Request $request , CourseChapter $chapter){
+        $sortedIds = $request->sortedIDs;
+        $lessons=$chapter->lessons;
+        foreach($sortedIds as $index=>$id){
+            foreach($lessons as $lesson) {
+                if($lesson->id == $id){
+                    $lesson->order= $index + 1;
+                    $lesson->save();
+                }
+            }
+        }
+        return response()->json(['status'=>'success', 'message'=>'Lessons sorted successfully']);
+    }
+
 }

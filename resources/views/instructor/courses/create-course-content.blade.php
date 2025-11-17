@@ -60,7 +60,7 @@
                     <div class="accordion-body">
                         <ul class="item_list sortable_list">
                             @foreach($chapter->lessons ?? [] as $lesson)
-                            <li data-lesson-id="{{ $lesson->id }}">
+                            <li data-lesson-id="{{ $lesson->id }}" data-chapter-id="{{ $chapter->id }}">
                                 <span>{{ $lesson->title }}</span>
                                 <div class="add_course_content_action_btn">
                                     <a class="edit edit_lesson"

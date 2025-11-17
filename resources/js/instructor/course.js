@@ -276,8 +276,8 @@ $('.delete-chapter').on('click', function(e){
     }})
 });
 
-if ($('.item_list').length) {
-    console.log($('.item_list').length);
+if ($('.item_list li').length) {
+    // console.log($('.item_list').length);
     $('.item_list').sortable({
         "ui-sortable": "highlight",
         containment: "parent",
@@ -286,7 +286,27 @@ if ($('.item_list').length) {
         items: "> li",
         update:function( event, ui ){
             var sortedIDs = $(this).sortable("toArray",{attribute: 'data-lesson-id'});
-            console.log(sortedIDs);
+            // console.log(sortedIDs);
+            var chapter_id = ui.item.data('chapter-id');
+            // console.log(chapter_id);
+            $.ajax({
+                method: 'POST',
+                url: base_url + '/instructor/course/course-lesson/sort/' + chapter_id,
+                data: {
+                    _token: csrfToken,
+                    sortedIDs: sortedIDs
+                },
+                beforeSend: function() {
+                    
+                },
+                success: function(data) {
+                    if (data.status == 'success') {
+                        notyf.success(data.message);
+                    }
+                },
+                error: function(xhr, status, error) {}
+            })
+            
         }
     }
     )
