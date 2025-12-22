@@ -311,3 +311,24 @@ if ($('.item_list li').length) {
     }
     )
 }
+
+$('.sort-chapter-btn').on('click',function(e){
+    e.preventDefault();
+    $('#dynamic-modal').modal('show');
+    var course_id = $(this).data('course-id');
+    $.ajax({
+        method: 'GET',
+        url: base_url + '/instructor/course/course-chapter-sort/'+ course_id,
+        data:{} ,
+        beforeSend: function() {
+            $('.dynamic-modal-content').html(loader);
+            
+        },
+        success: function(data) {
+            $('.dynamic-modal-content').html(data);
+        },
+        error: function(xhr, status, error) {
+            // $('#dynamic-modal .modal-body').html('<h3 class="text-center text-danger">An error occurred. Please try again.</h3>');
+        }
+    })
+});

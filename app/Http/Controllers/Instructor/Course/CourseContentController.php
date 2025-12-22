@@ -88,16 +88,25 @@ class CourseContentController extends Controller
 
     public function sortLesson(Request $request , CourseChapter $chapter){
         $sortedIds = $request->sortedIDs;
-        $lessons=$chapter->lessons;
+        // $lessons=$chapter->lessons;
         foreach($sortedIds as $index=>$id){
-            foreach($lessons as $lesson) {
-                if($lesson->id == $id){
-                    $lesson->order= $index + 1;
-                    $lesson->save();
-                }
-            }
+            // foreach($lessons as $lesson) {
+            //     if($lesson->id == $id){
+            //         $lesson->order= $index + 1;
+            //         $lesson->save();
+            //     }
+            // }
+            CourseChapterLesson::where('chapter_id',$chapter->id)->where('id',$id)->update([
+                'order'=>$index+1
+            ]);
         }
         return response()->json(['status'=>'success', 'message'=>'Lessons sorted successfully']);
+    }
+
+    public function sortChapterModel(Course $course)  {
+        $chapters = CourseChapter::where('course_id',$course->id)->get() ;
+        return view('instructor.courses.partials.course-chapter-sort-modal',compact('chapters'))->render();
+
     }
 
 }

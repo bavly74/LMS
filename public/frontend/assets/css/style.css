@@ -15664,3 +15664,22 @@ footer {
     right: 20px;
     z-index: 9999; /* عشان تبقى فوق أي عنصر */
 }
+
+.add_course_content .item_list_V2 {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.add_course_content .item_list_V2 li {
+    color: var(--colorBlack);
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 8px;
+    border: 1px solid var(--borderColor);
+    padding: 13px 50px 13px 55px;
+    position: relative;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}

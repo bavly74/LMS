@@ -94,8 +94,9 @@ Route::group(['middleware' => ['auth:instructor' ,'verified' , 'instructorStatus
         Route::get('course-lesson-edit-modal/{id}/{chapter_id}',[CourseContentController::class,'editCourseLessonModal'])->name('course-lesson-edit-modal');
         Route::patch('course-lesson-update/{lesson}/{chapter_id}',[CourseContentController::class,'updateCourseLesson'])->name('course-lesson-update');
         Route::get('course-lesson-delete/{lesson}',[CourseContentController::class,'deleteLesson'])->name('course-lesson-delete');
-
         Route::post('course-lesson/sort/{chapter}',[CourseContentController::class,'sortLesson'])->name('course-lesson.sort');
+
+        Route::get('course-chapter-sort/{course}',[CourseContentController::class,'sortChapterModel'])->name('course-chapter-sort-modal');
 
     });
 
