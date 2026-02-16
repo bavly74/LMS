@@ -104,9 +104,19 @@ class CourseContentController extends Controller
     }
 
     public function sortChapterModel(Course $course)  {
-        $chapters = CourseChapter::where('course_id',$course->id)->get() ;
-        return view('instructor.courses.partials.course-chapter-sort-modal',compact('chapters'))->render();
+        $chapters = CourseChapter::where('course_id',$course->id)->orderBy('order','ASC')->get() ;
+        return view('instructor.courses.partials.course-chapter-sort-modal',compact('chapters','course'))->render();
 
+    }
+
+    public function sortChapter(Request $request , Course $course ) {
+        $sortedIds = $request->sortedIDs;
+        foreach($sortedIds as $index=>$id){
+            CourseChapter::where('course_id',$course->id)->where('id',$id)->update([
+                'order'=>$index+1
+            ]);
+        }
+        return response()->json(['status'=>'success', 'message'=>'Chapters sorted successfully']);
     }
 
 }

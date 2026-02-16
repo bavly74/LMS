@@ -74,7 +74,7 @@ class CourseController extends Controller
                 return view('instructor.courses.create-more-info',compact('categories','levels','languages','course')) ;
                 break;
             case 3:
-                $chapters = CourseChapter::with('lessons')->where('course_id',$course_id)->get();
+                $chapters = CourseChapter::with('lessons')->where('course_id',$course_id)->orderBy('order','ASC')->get();
                 return view('instructor.courses.create-course-content',compact('course_id','chapters')) ;
                 break;
         }

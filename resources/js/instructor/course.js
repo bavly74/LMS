@@ -332,3 +332,40 @@ $('.sort-chapter-btn').on('click',function(e){
         }
     })
 });
+
+
+if ($('.chapter_sortable_list li').length) {
+    // console.log($('.chapter_sortable_list').length);
+    $('.chapter_sortable_list').sortable({
+        "ui-sortable": "highlight",
+        containment: "parent",
+        cursor: "move",
+        handle: ".handle",
+        items: "> li",
+        update:function( event, ui ){
+            var sortedIDs = $(this).sortable("toArray",{attribute: 'data-chapter-id'});
+            // console.log(sortedIDs);
+            var course_id = ui.item.data('course-id');
+            // console.log(chapter_id);
+            $.ajax({
+                method: 'POST',
+                url: base_url + '/instructor/course/course-chapter/sort/' + course_id,
+                data: {
+                    _token: csrfToken,
+                    sortedIDs: sortedIDs
+                },
+                beforeSend: function() {
+                    
+                },
+                success: function(data) {
+                    if (data.status == 'success') {
+                        notyf.success(data.message);
+                    }
+                },
+                error: function(xhr, status, error) {}
+            })
+            
+        }
+    }
+    )
+}

@@ -97,6 +97,7 @@ Route::group(['middleware' => ['auth:instructor' ,'verified' , 'instructorStatus
         Route::post('course-lesson/sort/{chapter}',[CourseContentController::class,'sortLesson'])->name('course-lesson.sort');
 
         Route::get('course-chapter-sort/{course}',[CourseContentController::class,'sortChapterModel'])->name('course-chapter-sort-modal');
+        Route::post('course-chapter-sort/{course}',[CourseContentController::class,'sortChapter'])->name('course-chapter-sort');
 
     });
 
