@@ -44,7 +44,7 @@
 
                         </div> --}}
                         <!-- رفع فيديو -->
-                        <div class="input-group video_source_input mt-2">
+                        <div class="input-group video_source_input mt-2 {{ @$lesson->storage == 'upload' ? '' : 'd-none' }}">
                             <span class="input-group-btn">
                                 <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
                                     <i class="fa fa-picture-o"></i> Choose
@@ -55,7 +55,7 @@
                         </div>
 
                         <!-- إدخال رابط -->
-                        <div class="input-group video_text_input mt-2 d-none">
+                        <div class="input-group video_text_input mt-2 {{ @$lesson->storage != 'upload' ? '' : 'd-none' }} ">
                             <input type="text" class="form-control demo_video_source" name="url" value="{{ @$lesson?->file_path }}">
                         </div>
 

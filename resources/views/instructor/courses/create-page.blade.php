@@ -27,14 +27,14 @@
                                 <li class="nav-item" role="presentation">
                                     <a href="" class="nav-link course-tab {{request('step')==3 ? 'active' : ''}}" data-step="3" >Course Contents</a>
                                 </li>
-                                <li class="nav-item" role="presentation" data-step="4" >
-                                    <a href="" class="nav-link course-tab {{request('step')==4 ? 'active' : ''}}" >Finish</a>
+                                <li class="nav-item" role="presentation">
+                                    <a href="" class="nav-link course-tab {{request('step')==4 ? 'active' : ''}}" data-step="4" >Finish</a>
                                 </li>
                             </ul>
                             <div class="tab-content" id="pills-tabContent">
                                 @yield('course_content')
 
-{{--                                <div class="tab-pane fade" id="pills-contact" role="tabpanel"--}}
+                              {{-- <div class="tab-pane fade" id="pills-contact" role="tabpanel"--}}
 {{--                                     aria-labelledby="pills-contact-tab" tabindex="0">--}}
 {{--                                    <div class="add_course_content">--}}
 {{--                                        <div--}}
@@ -438,7 +438,7 @@
 {{--                                            </div>--}}
 {{--                                        </form>--}}
 {{--                                    </div>--}}
-{{--                                </div>--}}
+{{--                                </div> --}}
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
         </div>
         <form action="">
             <div class="modal-body">
@@ -19,16 +19,16 @@
                             @endforeach
                         </ul>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
+        
         </form>
     </div>
 
 <script>
     var base_url= $('meta[name="base-url"]').attr('content');
     var csrfToken = $('meta[name="csrf-token"]').attr('content');
+    $('.btn-close').on('click', function() {
+        window.location.reload();
+    });
         if ($('.chapter_sortable_list li').length) {
         // console.log($('.chapter_sortable_list').length);
         $('.chapter_sortable_list').sortable({
@@ -37,6 +37,7 @@
             cursor: "move",
             handle: ".handle",
             items: "> li",
+            forcePlaceholderSize: true,
             update:function( event, ui ){
                 var sortedIDs = $(this).sortable("toArray",{attribute: 'data-chapter-id'});
                 // console.log(sortedIDs);

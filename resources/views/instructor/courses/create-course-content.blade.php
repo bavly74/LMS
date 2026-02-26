@@ -47,8 +47,7 @@
                             </div>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li class="add-lesson" data-chapter-id= {{ $chapter->id }}><a class="dropdown-item" href="#">Add Lesson</a></li>
-                                <li><a class="dropdown-item" href="#">Add Document</a></li>
-                                <li><a class="dropdown-item" href="#">Add Quiz</a></li>
+                         
                             </ul>
                         </div>
                         <a class="edit edit-chapter" href="javascript:;" data-chapter-id="{{ $chapter->id }}"><i class="far fa-edit"></i></a>
@@ -83,4 +82,3 @@
     </div>
 </div>
 @endsection
-

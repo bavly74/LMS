@@ -77,6 +77,11 @@ class CourseController extends Controller
                 $chapters = CourseChapter::with('lessons')->where('course_id',$course_id)->orderBy('order','ASC')->get();
                 return view('instructor.courses.create-course-content',compact('course_id','chapters')) ;
                 break;
+
+            case 4:
+                $course = Course::findOrFail($course_id) ;
+                return view('instructor.courses.finish',compact('course')) ;
+                break;
         }
     }
 
@@ -134,6 +139,24 @@ class CourseController extends Controller
                         'message' => 'Course created successfully.',
                         'redirect' => route('instructor.course.edit', ['course_id'=> $request->id ,'step'=> $request->next_step] )
                     ],200);
+                break;
+
+            case 4:
+                try {
+                    
+                    $request->validate([
+                        'activity_status' => 'required|in:active,inactive,draft',
+                        'message_for_reviewer' => 'nullable|string|max:1000',
+                    ]);
+                    $course->update(['activity_status' => $request->input('activity_status'), 'message_for_reviewer' => $request->input('message_for_reviewer')]);
+                    return response([
+                        'status' => 'success',
+                        'message' => 'Course status updated successfully.',
+                        'redirect' => route('instructor.course.index')
+                    ],200);
+                }catch (\Exception $exception){
+                    return response()->json(['error' => $exception->getMessage()],500);
+                }
                 break;
         }
 
