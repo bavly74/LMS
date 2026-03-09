@@ -36,6 +36,7 @@
     </style>
 </head>
 @vite(['resources/js/admin/admin.js']) ;
+@stack('header_scripts')
 <body >
 <script src="./dist/js/demo-theme.min.js?1692870487"></script>
 <div class="page">

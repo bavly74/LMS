@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\Course\LanguageController;
 use App\Http\Controllers\Admin\Course\LevelController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\InstructorController;
+use App\Http\Controllers\Admin\Course\CourseController;
 use Illuminate\Support\Facades\Route;
 
 Route::group( ["middleware"=>"guest:admin", "prefix"=>"admin" , "as"=>"admin."] , function () {
@@ -120,6 +121,34 @@ Route::group(['middleware' => ['auth:admin' ,'verified'], 'prefix'=>'admin' , 'a
         });
         //-------------------end course sub category crud------------------------
 
+
+        //------------------- courses sub ------------------------
+        
+                Route::get('/',[CourseController::class,'index'])->name('index');
+                Route::post('/update-status/{course}',[CourseController::class,'updateStatus'])->name('update-status');
+                Route::get('/create',[CourseController::class,'create'])->name('create');
+                Route::post('/store',[CourseController::class,'store'])->name('store');
+                Route::get('{course_id}/edit',[CourseController::class,'edit'])->name('edit');
+                Route::patch('/update',[CourseController::class,'update'])->name('update');
+
+                // Route::get('course-chapter-modal/{id}',[CourseContentController::class,'courseChapterModal'])->name('course-chapter-modal');
+                // Route::post('store-course-chapter/{id}',[CourseContentController::class,'storeCourseChapter'])->name('course-chapter.store');
+                // Route::get('course-chapter-edit-modal/{chapter}',[CourseContentController::class,'editCourseChapterModal'])->name('course-chapter-edit-modal');
+                // Route::patch('course-chapter/update/{chapter}',[CourseContentController::class,'updateChapter'])->name('course-chapter.update');
+                // Route::get('course-chapter/delete/{chapter}',[CourseContentController::class,'deleteChapter'])->name('course-chapter.delete');
+
+                // Route::get('course-lesson-modal/{id}',[CourseContentController::class,'courseLessonModal'])->name('course-lesson-modal');
+                // Route::post('store-lesson/{id}',[CourseContentController::class,'storeLesson'])->name('store-course-lesson');
+
+                // Route::get('course-lesson-edit-modal/{id}/{chapter_id}',[CourseContentController::class,'editCourseLessonModal'])->name('course-lesson-edit-modal');
+                // Route::patch('course-lesson-update/{lesson}/{chapter_id}',[CourseContentController::class,'updateCourseLesson'])->name('course-lesson-update');
+                // Route::get('course-lesson-delete/{lesson}',[CourseContentController::class,'deleteLesson'])->name('course-lesson-delete');
+                // Route::post('course-lesson/sort/{chapter}',[CourseContentController::class,'sortLesson'])->name('course-lesson.sort');
+
+                // Route::get('course-chapter-sort/{course}',[CourseContentController::class,'sortChapterModel'])->name('course-chapter-sort-modal');
+                // Route::post('course-chapter-sort/{course}',[CourseContentController::class,'sortChapter'])->name('course-chapter-sort');
+
+        //-------------------end courses crud------------------------
 
     });
     //-------------------end course crud------------------------
