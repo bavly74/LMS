@@ -8,7 +8,6 @@ const loader = `<div class="spinner-border" role="status">
 </div>`;
 $('.course-tab').on('click', function(e){
     e.preventDefault();
-    // console.log('yaa');
    let step = $(this).data('step');
    $('.course-form').find('input[name="next_step"]').val(step);
     $('.course-form').trigger('submit');

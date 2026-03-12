@@ -39,7 +39,7 @@ class CourseController extends Controller
         }
     }
     public function create(){
-        return view('instructor.courses.create-basic-info');
+        return view('admin.courses.course-module.create-basic-info') ;
     }
     public function store(CourseStore $request){
         $data = $request->validated();

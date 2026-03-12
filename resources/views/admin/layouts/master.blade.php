@@ -20,6 +20,8 @@
     <link href="{{asset('admin/assets/dist/css/tabler-payments.min.css?1692870487')}}" rel="stylesheet"/>
     <link href="{{asset('admin/assets/dist/css/tabler-vendors.min.css?1692870487')}}" rel="stylesheet"/>
     <link href="{{asset('admin/assets/dist/css/demo.min.css?1692870487')}}" rel="stylesheet"/>
+    <link href="{{asset('css/admin.css')}}" rel="stylesheet"/>
+    <link href="{{asset('admin/assets/css/style.css')}}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@$ICONS_VERSION/dist/tabler-icons.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.34.1/tabler-icons.min.css" integrity="sha512-s0zOeW/zxh8f817uykbgBqmx1dwmdvWwQYamh+lU9NzP8jeQ/ikNPE9dBK+C55A5WUtOetZAI09tLxKIj0r9WQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
@@ -176,5 +178,7 @@
 <script src="{{asset('admin/assets/dist/js/demo.min.js?1692870487')}}" defer></script>
 <script defer src="https://cdn.jsdelivr.net/npm/@flasher/flasher@1.2.4/dist/flasher.min.js"></script>
 <script src="{{asset('frontend/assets/js/jquery-3.7.1.min.js')}}"></script>
+<script src="{{asset('/vendor/laravel-filemanager/js/stand-alone-button.js')}}" ></script>
+@stack('scripts')
 </body>
 </html>

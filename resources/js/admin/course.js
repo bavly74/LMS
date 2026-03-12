@@ -1,3 +1,12 @@
+
+const base_url = $('meta[name="base_url"]').attr('content');
+const basicInfoUrl = base_url + '/admin/course/store';
+const moreInfoUrl = base_url + '/admin/course/update';
+const csrfToken = $('meta[name="csrf-token"]').attr('content');
+const notyf = new Notyf() ;
+const loader = `<div class="spinner-border" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>`;
 function updateCourseStatus(courseId, status) {
     $.ajax({
         url: '/admin/course/update-status/' + courseId,
@@ -8,11 +17,9 @@ function updateCourseStatus(courseId, status) {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        beforeSend: function() {
-            // Optionally, show a loading indicator
-        },
+        
         success: function(response) {
-            alert('Course status updated successfully!');
+            window.location.reload();
         },
         error: function(xhr) {
             alert('An error occurred while updating the course status.');

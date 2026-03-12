@@ -4,7 +4,7 @@
         <div class="container-xl">
             <div class="row align-items-lg-start">
                 <div class="col-3">
-                    <a href="{{route('admin.course.level.create')}}" class="btn btn-primary">+ Add Level</a>
+                    <a href="{{route('admin.course.create')}}" class="btn btn-primary">+ Add Course</a>
                 </div>
             </div><br>
             <div class="row row-cards">
@@ -31,7 +31,16 @@
                                         <td>{{$row->title}}</td>
                                         <td>{{$row->instructor->name}}</td>
                                         <td>{{$row->price}}</td>
-                                        <td>{{$row->status}}</td>
+                                        <td>
+                                            <span class="badge bg-{{ match($row->status) {
+                                                'pending' => 'warning',
+                                                'approved' => 'success',
+                                                default => 'danger'
+                                            } }}" 
+                                            style="color:white">
+                                                {{ $row->status }}
+                                            </span>
+                                        </td>
                                         <td>
                                             <select class="form-control form-control-sm update-course-status" data-id="{{$row->id}}">
                                                 <option value="pending" {{$row->status == 'pending' ? 'selected' : ''}}>Pending</option>

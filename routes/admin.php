@@ -124,10 +124,11 @@ Route::group(['middleware' => ['auth:admin' ,'verified'], 'prefix'=>'admin' , 'a
 
         //------------------- courses sub ------------------------
         
-                Route::get('/',[CourseController::class,'index'])->name('index');
-                Route::post('/update-status/{course}',[CourseController::class,'updateStatus'])->name('update-status');
-                Route::get('/create',[CourseController::class,'create'])->name('create');
-                Route::post('/store',[CourseController::class,'store'])->name('store');
+        Route::get('/',[CourseController::class,'index'])->name('index');
+        Route::post('/update-status/{course}',[CourseController::class,'updateStatus'])->name('update-status');
+        Route::get('/create',[CourseController::class,'create'])->name('create');
+        Route::post('/store',[CourseController::class,'store'])->name('store');
+
                 Route::get('{course_id}/edit',[CourseController::class,'edit'])->name('edit');
                 Route::patch('/update',[CourseController::class,'update'])->name('update');
 
@@ -153,3 +154,8 @@ Route::group(['middleware' => ['auth:admin' ,'verified'], 'prefix'=>'admin' , 'a
     });
     //-------------------end course crud------------------------
 }) ;
+
+
+Route::group(['prefix' => '/admin/laravel-filemanager'], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
